@@ -39,8 +39,27 @@ jobs:
             echo "::warning::Falta el secret TOKEN_ESTADISTICAS; se reutiliza assets/stats.json"
           fi
 
-      - name: Recolectar estadisticas
+      # Un token mal pegado o vencido daba un traceback de Python; asi el
+      # error dice que pasa y donde arreglarlo.
+      - name: Comprobar que el PAT sirve
+        id: token
         if: steps.pat.outputs.hay == 'si'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN_ESTADISTICAS }}
+        run: |
+          if usuario=$(gh api user --jq .login 2>/dev/null); then
+            echo "El PAT funciona; autenticado como $usuario."
+            echo "sirve=si" >> "$GITHUB_OUTPUT"
+          else
+            echo "sirve=no" >> "$GITHUB_OUTPUT"
+            echo "::warning::El PAT del secret TOKEN_ESTADISTICAS no es valido \
+          (401). Regeneralo en github.com/settings/tokens y vuelve a guardarlo \
+          con: gh secret set TOKEN_ESTADISTICAS --repo Edisinh0/Edisinh0"
+          fi
+
+      - name: Recolectar estadisticas
+        if: steps.token.outputs.sirve == 'si'
         env:
           GH_TOKEN: ${{ secrets.TOKEN_ESTADISTICAS }}
         run: |
