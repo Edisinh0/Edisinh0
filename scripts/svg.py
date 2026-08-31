@@ -143,9 +143,10 @@ def render(ascii_txt, perfil, stats, tema):
 
     cols = cols_arte + SEPARACION_CAR + cols_ficha
     filas = max(len(arte), len(ficha))
-    ancho = round(cols * ANCHO_CAR + MARGEN * 2)
+    # Un pelo de holgura para que no se corte el borde derecho si la fuente
+    # de respaldo mide un poco mas de lo previsto.
+    ancho = round(cols * ANCHO_CAR + MARGEN * 2 + 8)
     alto = round(filas * ALTO_LINEA + MARGEN * 2 + 6)
-    largo_linea = cols * ANCHO_CAR
 
     out = [
         "<?xml version='1.0' encoding='UTF-8'?>",
@@ -164,16 +165,22 @@ def render(ascii_txt, perfil, stats, tema):
         f".add {{fill: {c['suma']};}}",
         f".del {{fill: {c['resta']};}}",
         f".cc {{fill: {c['tenue']};}}",
+        f".ascii {{fill: {c['ascii']};}}",
         "text, tspan {white-space: pre;}",
         "</style>",
         f'<rect width="{ancho}px" height="{alto}px" fill="{c["fondo"]}" rx="15"/>',
         f'<text x="{MARGEN}" y="{MARGEN + FUENTE_PX}" fill="{c["texto"]}">',
     ]
 
-    # Cada fila combina retrato y ficha en una sola linea: asi la grilla la
-    # sostienen los propios caracteres y no las coordenadas, que dependerian
-    # de la fuente que tenga quien mira. textLength fija ademas el ancho total,
-    # de modo que el panel se ve igual con cualquier monoespaciada de respaldo.
+    # Cada fila combina retrato y ficha en una sola linea, rellenando con
+    # espacios: asi la grilla la sostienen los propios caracteres y no las
+    # coordenadas, que dependerian de la fuente que tenga quien mira.
+    #
+    # Nada de textLength: al repartir el ancho forzado, el navegador se lo
+    # carga al texto suelto y deja los <tspan> hijos donde caigan, con lo que
+    # el retrato se desparrama y la ficha se le monta encima. Con la fuente
+    # normalizada, Consolas y Menlo miden ambas ~9.6px por caracter, que es
+    # justo lo que asume ANCHO_CAR.
     y = MARGEN + FUENTE_PX
     for i in range(filas):
         izq = arte[i] if i < len(arte) else ""
@@ -183,13 +190,9 @@ def render(ascii_txt, perfil, stats, tema):
         usado = sum(len(t) for t, _ in partes)
         partes.append((" " * max(0, cols - usado), "cc"))
         trozos = "".join(
-            f'<tspan class="{cl}">{esc(t)}</tspan>' if cl != "ascii" else esc(t)
-            for t, cl in partes
+            f'<tspan class="{cl}">{esc(t)}</tspan>' for t, cl in partes
         )
-        out.append(
-            f'<tspan x="{MARGEN}" y="{y + i * ALTO_LINEA}" '
-            f'textLength="{largo_linea:.1f}" lengthAdjust="spacing">{trozos}</tspan>'
-        )
+        out.append(f'<tspan x="{MARGEN}" y="{y + i * ALTO_LINEA}">{trozos}</tspan>')
     out += ["</text>", "</svg>"]
     return "\n".join(out) + "\n"
 
