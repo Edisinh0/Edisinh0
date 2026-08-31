@@ -1,0 +1,22 @@
+{
+  "titulo": "eddie@github",
+  "nacimiento": null,
+  "sistema": [
+    ["OS", "macOS 26, Windows 11"],
+    ["Uptime", null],
+    ["Host", "iContel Telecom, una empresa de TNA Group"],
+    ["Kernel", "Desarrollador Full Stack"],
+    ["IDE", "VS Code, Claude Code"]
+  ],
+  "idiomas_reales": "Español, Inglés",
+  "hobbies": [
+    ["Hobbies.Software", null],
+    ["Hobbies.Otros", null]
+  ],
+  "contacto": [
+    ["Email.Personal", null],
+    ["Email.Trabajo", "ecerpa@tnagroup.cl"],
+    ["LinkedIn", null],
+    ["Portafolio", null]
+  ]
+}

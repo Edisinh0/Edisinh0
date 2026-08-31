@@ -1,0 +1,52 @@
+name: Actualizar panel del perfil
+
+on:
+  schedule:
+    # Todos los dias a las 09:00 UTC (05:00 en Chile continental).
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar Pillow
+        run: pip install --quiet Pillow
+
+      - name: Recolectar estadisticas
+        env:
+          # PAT con scope repo, para que los repos privados tambien cuenten.
+          GH_TOKEN: ${{ secrets.TOKEN_ESTADISTICAS }}
+        run: python scripts/stats.py > assets/stats.json
+
+      - name: Regenerar el retrato ASCII
+        run: |
+          python scripts/ascii_art.py assets/retrato.jpg \
+            --cols 46 --gamma 0.8 --local 6 --nitidez 180 \
+            --recorte 250,40,900,940 --salida assets/retrato.txt > /dev/null
+
+      - name: Regenerar los SVG
+        run: python scripts/svg.py
+
+      - name: Commitear si algo cambio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A dark_mode.svg light_mode.svg assets/
+          if git diff --cached --quiet; then
+            echo "Sin cambios."
+          else
+            git commit -m "Actualizar el panel del perfil"
+            git push
+          fi
