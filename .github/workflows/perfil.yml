@@ -24,11 +24,30 @@ jobs:
       - name: Instalar Pillow
         run: pip install --quiet Pillow
 
-      - name: Recolectar estadisticas
+      # Las cifras necesitan un PAT propio: el GITHUB_TOKEN del runner esta
+      # limitado a este repo, asi que no puede ver los privados ni resolver
+      # `viewer`. Si falta, se conservan las ultimas cifras ya guardadas.
+      - name: Ver si hay PAT
+        id: pat
         env:
-          # PAT con scope repo, para que los repos privados tambien cuenten.
+          TOKEN: ${{ secrets.TOKEN_ESTADISTICAS }}
+        run: |
+          if [ -n "$TOKEN" ]; then
+            echo "hay=si" >> "$GITHUB_OUTPUT"
+          else
+            echo "hay=no" >> "$GITHUB_OUTPUT"
+            echo "::warning::Falta el secret TOKEN_ESTADISTICAS; se reutiliza assets/stats.json"
+          fi
+
+      - name: Recolectar estadisticas
+        if: steps.pat.outputs.hay == 'si'
+        env:
           GH_TOKEN: ${{ secrets.TOKEN_ESTADISTICAS }}
-        run: python scripts/stats.py > assets/stats.json
+        run: |
+          # A un archivo aparte: si el script falla, no se pierden las cifras
+          # anteriores por el truncado que hace la redireccion.
+          python scripts/stats.py > /tmp/stats.json
+          mv /tmp/stats.json assets/stats.json
 
       - name: Regenerar el retrato ASCII
         run: |
