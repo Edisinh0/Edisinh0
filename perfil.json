@@ -1,6 +1,6 @@
 {
   "titulo": "eddie@github",
-  "nacimiento": null,
+  "nacimiento": "2000-12-24",
   "sistema": [
     ["OS", "macOS 26, Windows 11"],
     ["Uptime", null],
@@ -10,13 +10,13 @@
   ],
   "idiomas_reales": "Español, Inglés",
   "hobbies": [
-    ["Hobbies.Software", null],
-    ["Hobbies.Otros", null]
+    ["Hobbies.Software", "Programar, videojuegos"],
+    ["Hobbies.Otros", "Deportes"]
   ],
   "contacto": [
-    ["Email.Personal", null],
+    ["Email.Personal", "eddiecerpa@gmail.com"],
     ["Email.Trabajo", "ecerpa@tnagroup.cl"],
-    ["LinkedIn", null],
+    ["LinkedIn", "eddiecerpa"],
     ["Portafolio", null]
   ]
 }
