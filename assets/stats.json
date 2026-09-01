@@ -5,23 +5,23 @@
   "followers": 0,
   "repos_total": 11,
   "stars": 0,
-  "commits": 267,
-  "commits_contribuciones": 267,
-  "commits_repos": 236,
+  "commits": 516,
+  "commits_contribuciones": 516,
+  "commits_repos": 239,
   "repos_sin_stats": [],
   "contributed": 11,
-  "lines_added": 5706908,
-  "lines_deleted": 5261731,
-  "lines_total": 445177,
+  "lines_added": 5706442,
+  "lines_deleted": 5261473,
+  "lines_total": 444969,
   "languages": [
     {
       "name": "JavaScript",
-      "size": 3072876,
+      "size": 3072896,
       "color": "#f1e05a"
     },
     {
       "name": "PHP",
-      "size": 1174215,
+      "size": 1174269,
       "color": "#4F5D95"
     },
     {
@@ -51,7 +51,7 @@
     },
     {
       "name": "Shell",
-      "size": 85198,
+      "size": 87256,
       "color": "#89e051"
     },
     {
@@ -70,5 +70,5 @@
       "color": "#ff5a03"
     }
   ],
-  "generated_at": "2026-08-31T19:50:31.930040+00:00"
+  "generated_at": "2026-09-01T14:02:51.624341+00:00"
 }
