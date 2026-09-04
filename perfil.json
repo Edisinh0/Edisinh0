@@ -2,21 +2,54 @@
   "titulo": "eddie@github",
   "nacimiento": "2000-12-24",
   "sistema": [
-    ["OS", "macOS 26, Windows 11"],
-    ["Uptime", null],
-    ["Host", "iContel Telecom, una empresa de TNA Group"],
-    ["Kernel", "Desarrollador Full Stack"],
-    ["IDE", "VS Code, Claude Code"]
+    [
+      "OS",
+      "macOS 26, Windows 11"
+    ],
+    [
+      "Uptime",
+      null
+    ],
+    [
+      "Host",
+      "iContel Telecom, una empresa de TNA Group"
+    ],
+    [
+      "Kernel",
+      "Desarrollador Full Stack"
+    ],
+    [
+      "IDE",
+      "VS Code, Claude Code"
+    ]
   ],
   "idiomas_reales": "Español, Inglés",
   "hobbies": [
-    ["Hobbies.Software", "Programar, videojuegos"],
-    ["Hobbies.Otros", "Deportes"]
+    [
+      "Hobbies.Software",
+      "Programar, videojuegos"
+    ],
+    [
+      "Hobbies.Otros",
+      "Deportes"
+    ]
   ],
   "contacto": [
-    ["Email.Personal", "eddiecerpa@gmail.com"],
-    ["Email.Trabajo", "ecerpa@tnagroup.cl"],
-    ["LinkedIn", "eddiecerpa"],
-    ["Portafolio", null]
+    [
+      "Email.Personal",
+      "eddiecerpa@gmail.com"
+    ],
+    [
+      "Email.Trabajo",
+      "ecerpa@tnagroup.cl"
+    ],
+    [
+      "LinkedIn",
+      "eddiecerpa"
+    ],
+    [
+      "Portafolio",
+      "eddie-cerpa-edisinh0s-projects.vercel.app"
+    ]
   ]
 }
