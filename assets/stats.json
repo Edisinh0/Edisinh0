@@ -3,20 +3,20 @@
   "name": "Eddie Cerpa",
   "created_at": "2022-09-26T18:04:17Z",
   "followers": 0,
-  "repos_total": 11,
+  "repos_total": 12,
   "stars": 0,
-  "commits": 516,
-  "commits_contribuciones": 516,
-  "commits_repos": 239,
+  "commits": 536,
+  "commits_contribuciones": 536,
+  "commits_repos": 258,
   "repos_sin_stats": [],
-  "contributed": 11,
-  "lines_added": 5706442,
-  "lines_deleted": 5261473,
-  "lines_total": 444969,
+  "contributed": 12,
+  "lines_added": 5708778,
+  "lines_deleted": 5262892,
+  "lines_total": 445886,
   "languages": [
     {
       "name": "JavaScript",
-      "size": 3072896,
+      "size": 3073270,
       "color": "#f1e05a"
     },
     {
@@ -31,12 +31,12 @@
     },
     {
       "name": "TypeScript",
-      "size": 695890,
+      "size": 769802,
       "color": "#3178c6"
     },
     {
       "name": "Python",
-      "size": 653587,
+      "size": 665508,
       "color": "#3572A5"
     },
     {
@@ -46,8 +46,18 @@
     },
     {
       "name": "HTML",
-      "size": 122787,
+      "size": 143598,
       "color": "#e34c26"
+    },
+    {
+      "name": "CSS",
+      "size": 138213,
+      "color": "#663399"
+    },
+    {
+      "name": "Astro",
+      "size": 132356,
+      "color": "#ff5a03"
     },
     {
       "name": "Shell",
@@ -55,20 +65,10 @@
       "color": "#89e051"
     },
     {
-      "name": "CSS",
-      "size": 38527,
-      "color": "#663399"
-    },
-    {
       "name": "Dockerfile",
       "size": 8072,
       "color": "#384d54"
-    },
-    {
-      "name": "Astro",
-      "size": 4090,
-      "color": "#ff5a03"
     }
   ],
-  "generated_at": "2026-09-03T13:26:16.632768+00:00"
+  "generated_at": "2026-09-04T01:34:45.518935+00:00"
 }
